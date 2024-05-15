@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         recyclerView = findViewById(R.id.recycler_view);
-        adapter = new PokedexAdapter();
+        adapter = new PokedexAdapter(getApplicationContext());
         layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setAdapter(adapter);
