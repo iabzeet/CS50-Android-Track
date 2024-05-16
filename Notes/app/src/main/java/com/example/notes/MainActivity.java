@@ -47,7 +47,15 @@ public class MainActivity extends AppCompatActivity {
                 adapter.reload();
             }
         });
+    }
 
+    //will be called evrytime an activity is brought to the foreground
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //this will both reload when the app starts up and
+        //every time the user comes back
         adapter.reload();
     }
 }

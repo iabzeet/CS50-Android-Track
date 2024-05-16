@@ -1,5 +1,6 @@
 package com.example.notes;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             super(view);
             containerVew = view.findViewById(R.id.note_row);
             textView = view.findViewById(R.id.note_row_text);
+
+            containerVew.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Note current = (Note) containerVew.getTag();
+                    Intent intent = new Intent(v.getContext(), NoteActivity.class);
+                    intent.putExtra("id", current.id);
+                    intent.putExtra("contents", current.contents);
+
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
@@ -40,6 +53,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         Note current = notes.get(position);
         //set the text of this text view to be the text of the note
         holder.textView.setText(current.contents);
+        holder.containerVew.setTag(current);
     }
 
     //method o geet the numbeer of notes inside of the adapter
